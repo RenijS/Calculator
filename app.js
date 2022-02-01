@@ -21,13 +21,60 @@ function divide(x, y) {
   }
 }
 
+let firstValue = undefined;
+let secondValue = undefined;
+let operator = undefined;
+
+function setFirstVal(value) {
+  if (firstValue == undefined) {
+    firstValue = value;
+  } else {
+    firstValue += value;
+  }
+  display.value += value;
+}
+
+function setSecondVal(value) {
+  if (secondValue == undefined) {
+    secondValue = value;
+  } else {
+    secondValue += value;
+  }
+  display.value += value;
+}
+
+function reset() {
+  firstValue = undefined;
+  secondValue = undefined;
+  operator = undefined;
+
+  display.value = "";
+}
+
+function setOperatorVal(value) {
+  if (operator != undefined && secondValue == undefined) {
+    if (value == "-") {
+      setSecondVal(value);
+    }
+  } else if (firstValue == undefined && operator == undefined) {
+    if (value == "-") {
+      setFirstVal(value);
+    }
+  } else if (operator == undefined) {
+    operator = value;
+    display.value += operator;
+  }
+}
+
 for (let i = 0; i < allBtn.length; i++) {
   allBtn[i].addEventListener("click", (e) => {
     if (allBtn[i].id == "clear") {
-      display.value = "";
+      reset();
+    } else if (allBtn[i].id == "operator") {
+      setOperatorVal(allBtn[i].innerHTML);
     } else {
-      console.log(allBtn[i].innerHTML);
-      display.value += allBtn[i].innerHTML;
+      setFirstVal(allBtn[i].innerHTML);
+      console.log(firstValue);
     }
   });
 }
