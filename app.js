@@ -68,24 +68,29 @@ function setOperatorVal(value) {
     console.log("operator: " + operator);
   } else {
     if (operator == "+") {
-      firstValue = parseInt(firstValue) + parseInt(secondValue);
+      firstValue = add(parseInt(firstValue), parseInt(secondValue));
+      secondValue = undefined;
       console.log(`firstValue: ${firstValue}`);
     } else if (operator == "-") {
-      firstValue = parseInt(firstValue) - parseInt(secondValue);
+      firstValue = substract(parseInt(firstValue), parseInt(secondValue));
+      secondValue = undefined;
       console.log(`firstValue: ${firstValue}`);
     } else if (operator == "/") {
-      firstValue = parseInt(firstValue) / parseInt(secondValue);
+      firstValue = divide(parseInt(firstValue), parseInt(secondValue));
+      secondValue = undefined;
       console.log(`firstValue: ${firstValue}`);
     } else if (operator == "*") {
-      firstValue = parseInt(firstValue) * parseInt(secondValue);
+      firstValue = multiply(parseInt(firstValue), parseInt(secondValue));
+      secondValue = undefined;
       console.log(`firstValue: ${firstValue}`);
     }
 
     if (value != "=") {
-      display.value += operator;
+      display.value += value;
       operator = value;
     } else {
       display.value = firstValue;
+      operator = undefined;
     }
   }
 }
