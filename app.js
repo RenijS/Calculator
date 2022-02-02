@@ -24,6 +24,7 @@ function divide(x, y) {
 let firstValue = undefined;
 let secondValue = undefined;
 let operator = undefined;
+let operatedValue = undefined;
 
 function setFirstVal(value) {
   if (firstValue == undefined) {
@@ -32,6 +33,7 @@ function setFirstVal(value) {
     firstValue += value;
   }
   display.value += value;
+  console.log("first value: " + firstValue);
 }
 
 function setSecondVal(value) {
@@ -41,13 +43,13 @@ function setSecondVal(value) {
     secondValue += value;
   }
   display.value += value;
+  console.log("second value: " + secondValue);
 }
 
 function reset() {
   firstValue = undefined;
   secondValue = undefined;
   operator = undefined;
-
   display.value = "";
 }
 
@@ -63,6 +65,28 @@ function setOperatorVal(value) {
   } else if (operator == undefined) {
     operator = value;
     display.value += operator;
+    console.log("operator: " + operator);
+  } else {
+    if (operator == "+") {
+      firstValue = parseInt(firstValue) + parseInt(secondValue);
+      console.log(`firstValue: ${firstValue}`);
+    } else if (operator == "-") {
+      firstValue = parseInt(firstValue) - parseInt(secondValue);
+      console.log(`firstValue: ${firstValue}`);
+    } else if (operator == "/") {
+      firstValue = parseInt(firstValue) / parseInt(secondValue);
+      console.log(`firstValue: ${firstValue}`);
+    } else if (operator == "*") {
+      firstValue = parseInt(firstValue) * parseInt(secondValue);
+      console.log(`firstValue: ${firstValue}`);
+    }
+
+    if (value != "=") {
+      display.value += operator;
+      operator = value;
+    } else {
+      display.value = firstValue;
+    }
   }
 }
 
@@ -72,9 +96,14 @@ for (let i = 0; i < allBtn.length; i++) {
       reset();
     } else if (allBtn[i].id == "operator") {
       setOperatorVal(allBtn[i].innerHTML);
+    } else if (allBtn[i].id == "equals") {
+      setOperatorVal(allBtn[i].innerHTML);
     } else {
-      setFirstVal(allBtn[i].innerHTML);
-      console.log(firstValue);
+      if (operator == undefined) {
+        setFirstVal(allBtn[i].innerHTML);
+      } else {
+        setSecondVal(allBtn[i].innerHTML);
+      }
     }
   });
 }
