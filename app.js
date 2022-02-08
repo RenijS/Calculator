@@ -59,11 +59,11 @@ function setOperatorVal(value) {
     if (value == "-") {
       setFirstVal(value);
     }
-  } else if (operator == undefined && value != "=") {
+  } else if (operator == undefined && value != "=" && firstValue != "-") {
     operator = value;
     display.value += operator;
     console.log("operator: " + operator);
-  } else if (operator != undefined) {
+  } else if (operator != undefined && firstValue != "-") {
     if (operator == "+") {
       firstValue = add(Number(firstValue), Number(secondValue));
       secondValue = undefined;
@@ -104,6 +104,23 @@ for (let i = 0; i < allBtn.length; i++) {
     } else if (allBtn[i].id == "delete") {
       display.value = display.value.toString().slice(0, -1);
       if (operator == undefined) {
+        if (firstValue != undefined) {
+          if (firstValue.length == 1) {
+            firstValue = undefined;
+          } else {
+            firstValue = firstValue.toString().slice(0, -1);
+          }
+        }
+      } else if (operator != undefined) {
+        if (secondValue == undefined) {
+          operator = undefined;
+        } else {
+          if (secondValue.length == 1) {
+            secondValue = undefined;
+          } else {
+            secondValue = firstValue.toString().slice(0, -1);
+          }
+        }
       }
     } else if (allBtn[i].id == "operator") {
       setOperatorVal(allBtn[i].innerHTML);
