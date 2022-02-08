@@ -32,6 +32,14 @@ button {
   margin: 2px;
 }
 
+#clear {
+  background-color: rgb(255, 240, 240);
+}
+
+#delete {
+  background-color: rgb(255, 253, 240);
+}
+
 .controls {
   display: flex;
   flex-direction: column;
@@ -59,4 +67,11 @@ button {
 button:hover {
   cursor: pointer;
   background-color: rgb(226, 240, 255);
+}
+
+@media (max-width: 500px) {
+  .calculator {
+    width: 300px;
+    padding: 0;
+  }
 }
