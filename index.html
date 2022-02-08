@@ -8,37 +8,42 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Calculator</h1>
-    <section class="calculator">
-      <input type="text" name="display" id="display" />
-      <div class="controls">
-        <div id="row1" class="row">
-          <button class="button">1</button>
-          <button class="button">2</button>
-          <button class="button">3</button>
-          <button class="button" id="operator">+</button>
+    <main>
+      <h1>Calculator</h1>
+      <section class="calculator">
+        <input type="text" name="display" id="display" />
+        <div class="controls">
+          <div id="row0" class="row">
+            <button class="button" id="clear">Clear</button>
+            <button class="button" id="delete">Delete</button>
+          </div>
+          <div id="row1" class="row">
+            <button class="button">1</button>
+            <button class="button">2</button>
+            <button class="button">3</button>
+            <button class="button" id="operator">+</button>
+          </div>
+          <div id="row2" class="row">
+            <button class="button">4</button>
+            <button class="button">5</button>
+            <button class="button">6</button>
+            <button class="button" id="operator">-</button>
+          </div>
+          <div id="row3" class="row">
+            <button class="button">7</button>
+            <button class="button">8</button>
+            <button class="button">9</button>
+            <button class="button" id="operator">*</button>
+          </div>
+          <div id="row4" class="row">
+            <button class="button" id="point">.</button>
+            <button class="button">0</button>
+            <button class="button" id="equals">=</button>
+            <button class="button" id="operator">/</button>
+          </div>
         </div>
-        <div id="row2" class="row">
-          <button class="button">4</button>
-          <button class="button">5</button>
-          <button class="button">6</button>
-          <button class="button" id="operator">-</button>
-        </div>
-        <div id="row3" class="row">
-          <button class="button">7</button>
-          <button class="button">8</button>
-          <button class="button">9</button>
-          <button class="button" id="operator">*</button>
-        </div>
-        <div id="row4" class="row">
-          <button class="button" id="clear">C</button>
-          <button class="button">0</button>
-          <button class="button" id="equals">=</button>
-          <button class="button" id="operator">/</button>
-        </div>
-      </div>
-    </section>
-
+      </section>
+    </main>
     <!--JavaScript-->
     <script src="app.js"></script>
   </body>

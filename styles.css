@@ -4,13 +4,32 @@ body {
   justify-content: center;
   align-items: center;
 }
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  min-height: 500px;
+  padding: 10px;
+  margin-top: 50px;
+}
 
+.calculator {
+  width: 400px;
+  border: 2px var(--border) solid;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: var(--calculator);
+}
 button {
-  width: 40px;
-  height: 40px;
+  width: 100%;
   border-radius: 6px;
   background-color: aliceblue;
   border-color: whitesmoke;
+  padding: 20px;
+  font-size: 20px;
+  margin: 2px;
 }
 
 .controls {
@@ -32,6 +51,9 @@ button {
   border-right: 0;
   height: 2rem;
   text-align: end;
+  width: 100%;
+  padding: 10px 0px;
+  font-size: 5vh;
 }
 
 button:hover {

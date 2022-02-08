@@ -2,6 +2,7 @@ const allBtn = document.querySelectorAll(".button");
 const display = document.getElementById("display");
 
 function add(x, y) {
+  console.log(`${x} + ${y} = ${x + y}`);
   return x + y;
 }
 
@@ -14,11 +15,7 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
-  if (y != 0) {
-    return x / y;
-  } else {
-    console.warn("Dont divide by 0");
-  }
+  return Math.round((x / y) * 100) / 100;
 }
 
 let firstValue = undefined;
@@ -62,30 +59,35 @@ function setOperatorVal(value) {
     if (value == "-") {
       setFirstVal(value);
     }
-  } else if (operator == undefined) {
+  } else if (operator == undefined && value != "=") {
     operator = value;
     display.value += operator;
     console.log("operator: " + operator);
-  } else {
+  } else if (operator != undefined) {
     if (operator == "+") {
-      firstValue = add(parseInt(firstValue), parseInt(secondValue));
+      firstValue = add(Number(firstValue), Number(secondValue));
       secondValue = undefined;
       console.log(`firstValue: ${firstValue}`);
     } else if (operator == "-") {
-      firstValue = substract(parseInt(firstValue), parseInt(secondValue));
+      firstValue = substract(Number(firstValue), Number(secondValue));
       secondValue = undefined;
       console.log(`firstValue: ${firstValue}`);
     } else if (operator == "/") {
-      firstValue = divide(parseInt(firstValue), parseInt(secondValue));
-      secondValue = undefined;
-      console.log(`firstValue: ${firstValue}`);
+      if (secondValue == 0) {
+        alert("Cannot divide with 0");
+      } else {
+        firstValue = divide(Number(firstValue), Number(secondValue));
+        secondValue = undefined;
+        console.log(`firstValue: ${firstValue}`);
+      }
     } else if (operator == "*") {
-      firstValue = multiply(parseInt(firstValue), parseInt(secondValue));
+      firstValue = multiply(Number(firstValue), Number(secondValue));
       secondValue = undefined;
       console.log(`firstValue: ${firstValue}`);
     }
 
     if (value != "=") {
+      display.value = firstValue;
       display.value += value;
       operator = value;
     } else {
@@ -99,10 +101,28 @@ for (let i = 0; i < allBtn.length; i++) {
   allBtn[i].addEventListener("click", (e) => {
     if (allBtn[i].id == "clear") {
       reset();
+    } else if (allBtn[i].id == "delete") {
+      display.value = display.value.toString().slice(0, -1);
+      if (operator == undefined) {
+      }
     } else if (allBtn[i].id == "operator") {
       setOperatorVal(allBtn[i].innerHTML);
     } else if (allBtn[i].id == "equals") {
       setOperatorVal(allBtn[i].innerHTML);
+    } else if (allBtn[i].id == "point") {
+      if (operator == undefined) {
+        if (firstValue == undefined) {
+          setFirstVal("0.");
+        } else if (!firstValue.includes(".")) {
+          setFirstVal(".");
+        }
+      } else {
+        if (secondValue == undefined) {
+          setSecondVal("0.");
+        } else if (!secondValue.includes(".")) {
+          setSecondVal(".");
+        }
+      }
     } else {
       if (operator == undefined) {
         setFirstVal(allBtn[i].innerHTML);
